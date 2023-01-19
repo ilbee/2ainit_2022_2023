@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CustomerController!{% endblock %}
+
+{% block body %}
+    Prénom : {{ customer.firstName }}
+    <br/>
+    Nom : {{ customer.lastName }}
+    <hr/>
+
+    {% for order in customer.orders %}
+        Commande numéro {{ order.id}} : {{ order.status }}
+        <br/>
+    {% endfor %}
+
+{% endblock %}
