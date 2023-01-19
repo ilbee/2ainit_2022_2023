@@ -15,9 +15,21 @@ class CustomerController extends AbstractController
     #[Route('/customer', name: 'app_customer')]
     public function index(EntityManagerInterface $entityManager): Response
     {
+        $customers = $entityManager
+            ->getRepository(Customer::class)
+            ->findAll();
+
+        return $this->render('customer/list.html.twig', [
+            'customers' => $customers,
+        ]);
+    }
+
+    #[Route('/customer/view/{id}', name: 'app_customer_view')]
+    public function view(EntityManagerInterface $entityManager, int $id): Response
+    {
         $customer = $entityManager
             ->getRepository(Customer::class)
-            ->find(1);
+            ->find($id);
 
         return $this->render('customer/index.html.twig', [
             'controller_name' => 'CustomerController',
@@ -36,6 +48,8 @@ class CustomerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($customer);
             $entityManager->flush();
+
+            return $this->redirectToRoute('app_customer_view', ['id' => $customer->getId()]);
         }
 
         return $this->render('customer/new.html.twig', [

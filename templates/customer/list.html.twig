@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <ul>
+        {% for customer in customers %}
+            <li>{{ customer.firstName }} {{ customer.lastName }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
