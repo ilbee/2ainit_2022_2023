@@ -38,9 +38,15 @@ class CustomerController extends AbstractController
     }
 
     #[Route('/customer/new', name: 'app_customer_new')]
-    public function new(EntityManagerInterface $entityManager, Request $request): Response
+    #[Route('/customer/edit/{id}', name: 'app_customer_edit')]
+    public function new(EntityManagerInterface $entityManager, Request $request, int $id = null): Response
     {
         $customer = new Customer();
+        if ($id) {
+            $customer = $entityManager
+                ->getRepository(Customer::class)
+                ->find($id);
+        }
 
         $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);

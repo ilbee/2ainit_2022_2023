@@ -5,7 +5,11 @@
         {% for customer in customers %}
             <li>
                 {{ customer.firstName }} {{ customer.lastName }}
-                (<a href="{{ path('app_customer_view', {'id': customer.id}) }}">Voir</a>)
+                (
+                    <a href="{{ path('app_customer_view', {'id': customer.id}) }}">Voir</a>
+    |
+                    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">Modifier</a>
+                )
             </li>
         {% endfor %}
     </ul>
