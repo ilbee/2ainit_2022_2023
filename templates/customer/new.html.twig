@@ -1,7 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
-        <button type="submit">Valider</button>
-    {{ form_end(form) }}
+    <div class="row p-5">
+        {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.phone) }}
+            {{ form_row(form.address1) }}
+            {{ form_row(form.address2) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.state) }}
+            {{ form_row(form.postalCode) }}
+            {{ form_row(form.country) }}
+            {{ form_row(form.creditLimit) }}
+
+            <button type="submit" class="btn btn-primary">Valider</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
