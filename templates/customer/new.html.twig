@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
+    {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
         <button type="submit">Valider</button>
     {{ form_end(form) }}
 {% endblock %}
