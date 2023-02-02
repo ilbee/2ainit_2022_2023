@@ -16,8 +16,9 @@
     </head>
     <body>
         <header>
-            <a href="{{ path('app_customer') }}">Liste</a>
-            <a href="{{ path('app_customer_new') }}">Nouveau</a>
+            <a href="{{ path('app_customer') }}">Liste des clients</a>
+            <a href="{{ path('app_customer_new') }}">Nouveau client</a>
+            <a href="{{ path('app_order_new') }}">Nouvelle commande</a>
         </header>
         {% block body %}{% endblock %}
     </body>
