@@ -15,12 +15,6 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('orderDate', DateType::class, [
-                'widget' => 'single_text'
-            ])
-            ->add('shippedDate')
-            ->add('requiredDate')
-            ->add('status')
             ->add('comments')
             ->add('customer', EntityType::class, [
                 'class'         => Customer::class,

@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
+#[ORM\HasLifecycleCallbacks]
 class Order
 {
     #[ORM\Id]
@@ -33,6 +34,20 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Customer $customer = null;
+
+    private const STATE_NEW     = 100;
+    private const STATE_SHIPPED = 200;
+
+    #[ORM\PrePersist]
+    public function prePersist(): void
+    {
+        $now = new \DateTimeImmutable();
+        $this
+            ->setOrderDate($now)
+            ->setShippedDate($now->add(new \DateInterval('P3D')))
+            ->setRequiredDate($now->add(new \DateInterval('P5D')))
+            ->setStatus(self::STATE_NEW);
+    }
 
     public function getId(): ?int
     {

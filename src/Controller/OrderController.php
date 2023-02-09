@@ -27,6 +27,7 @@ class OrderController extends AbstractController
     ): Response
     {
         $order = new Order();
+
         $form = $this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
 
